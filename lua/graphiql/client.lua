@@ -29,7 +29,7 @@ function GraphQLClient:request(operation, variables)
     body.variables = variables
   end
 
-  body = vim.fn.json_encode(body)
+  body = vim.json.encode(body)
 
   local response = curl.post(self.url, {
     headers = vim.tbl_extend("force", self.headers, {
@@ -42,7 +42,7 @@ function GraphQLClient:request(operation, variables)
     error("GraphQL request failed: " .. tostring(response.status))
   end
 
-  return vim.fn.json_decode(response.body)
+  return vim.json.decode(response.body)
 end
 
 return GraphQLClient
