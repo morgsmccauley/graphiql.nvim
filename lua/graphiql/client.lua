@@ -25,10 +25,6 @@ function GraphQLClient:request(operation, variables)
     }
   )
 
-  if variables ~= nil then
-    body.variables = variables
-  end
-
   body = vim.json.encode(body)
 
   local response = curl.post(self.url, {
